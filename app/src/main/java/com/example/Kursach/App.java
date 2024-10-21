@@ -9,15 +9,21 @@ public class App {
     
     public static EnergyObject[] energyObjects;
     public static MainForm UI;
+    public static double resultingPower;
+    public static double consumersPower ;
+    
+    private static synchronized void setPowerByObJectThread(double value){
+        resultingPower += value;
+    }
 
     
     public static class EnergyObject{
         
         public String name;
         public double power;
-        public static String description;
+        public String description;
         private String programmName;
-        private String programmNameOnMap;
+        public String programmNameOnMap;
         public short frequency;
         public String type;
         
@@ -36,6 +42,33 @@ public class App {
             this.frequency = value;
             UI.labelMap.get(this.programmName).setForeground(Color.RED);
             UI.labelMap.get(this.programmNameOnMap).setText("");
+        }
+        
+    }
+    
+    public static class Processor extends Thread{
+        
+        public Processor(String name){
+            super(name);
+        }
+        
+        public void run(){
+            while(true){
+                
+            }
+        }
+    }
+    
+    public static class ObjectThread extends Thread{
+        EnergyObject object;
+        public ObjectThread(EnergyObject object){
+            super(object.name);
+            setPowerByObJectThread(object.power);
+            this.object = object;
+        }
+        
+        public void run(){
+            
         }
         
     }
@@ -68,5 +101,8 @@ public class App {
         createEnergyObjects();
         UI = new MainForm(energyObjects);
         UI.setVisible(true);
+        resultingPower = 0;
+        //создание потоков
+        //consumersPower = resultingPower;
     }
 }

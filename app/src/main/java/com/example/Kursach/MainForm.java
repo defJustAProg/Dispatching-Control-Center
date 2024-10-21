@@ -3,8 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.example.Kursach;
+import com.example.Kursach.App.EnergyObject;
+import static com.example.Kursach.App.energyObjects;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -29,26 +33,19 @@ public class MainForm extends javax.swing.JFrame {
     
     public MainForm(App.EnergyObject[] energyObjects) {
         
-        labelMap.put("kagaGES", kagaGES);
-        labelMap.put("avzyanGES", avzyanGES);
-        labelMap.put("karlamanGRES", karlamanGRES);
-        labelMap.put("mechetlinGES", mechetlinGES);
-        labelMap.put("newsterCHP", newsterCHP);
-        labelMap.put("pavlovGES", pavlovGES);
-        labelMap.put("priufimCHP", priufimCHP);
-        labelMap.put("salavatCHP", salavatCHP);
-        labelMap.put("sibayGCHP", sibayGCHP);
-        labelMap.put("slakGES", slakGES);
-        labelMap.put("sterCHP", sterCHP);
-        labelMap.put("tupkilWPP", tupkilWPP);
-        labelMap.put("ufimCHP_1", ufimCHP_1);
-        labelMap.put("ufimCHP_2", ufimCHP_2);
-        labelMap.put("ufimCHP_3", ufimCHP_3);
-        labelMap.put("ufimCHP_4", ufimCHP_4);
-        labelMap.put("umaguzGES", umaguzGES);
-        labelMap.put("uzanGES", uzanGES);
-        labelMap.put("zatonCHP", zatonCHP);
-        labelMap.put("zauralCHP", zauralCHP);
+        
+        
+        
+        
+        powerValue = 0;
+        frequencyValue = 0;
+        gresPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres.png";
+        gesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges.png";
+        vesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves.png";
+        gresOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres-orange.png";
+        gesOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges-orange.png";
+        vesOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves-orange.png"; 
+        initComponents();
         
         labelMap.put("kagaGES_MAP", kagaGES_MAP);
         labelMap.put("avzyanGES_MAP", avzyanGES_MAP);
@@ -71,18 +68,89 @@ public class MainForm extends javax.swing.JFrame {
         labelMap.put("zatonCHP_MAP", zatonCHP_MAP);
         labelMap.put("zauralCHP_MAP", zauralCHP_MAP);
         
-        powerValue = 0;
-        frequencyValue = 0;
-        gresPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres.png";
-        gesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges.png";
-        vesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves.png";
-        gresOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres-orange.png";
-        gesOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges-orange.png";
-        vesOrangePATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves-orange.png"; 
-        initComponents();
+        labelMap.put("kagaGES", kagaGES);
+        labelMap.put("avzyanGES", avzyanGES);
+        labelMap.put("karlamanGRES", karlamanGRES);
+        labelMap.put("mechetlinGES", mechetlinGES);
+        labelMap.put("newsterCHP", newsterCHP);
+        labelMap.put("pavlovGES", pavlovGES);
+        labelMap.put("priufimCHP", priufimCHP);
+        labelMap.put("salavatCHP", salavatCHP);
+        labelMap.put("sibayGCHP", sibayGCHP);
+        labelMap.put("slakGES", slakGES);
+        labelMap.put("sterCHP", sterCHP);
+        labelMap.put("tupkilWPP", tupkilWPP);
+        labelMap.put("ufimCHP_1", ufimCHP_1);
+        labelMap.put("ufimCHP_2", ufimCHP_2);
+        labelMap.put("ufimCHP_3", ufimCHP_3);
+        labelMap.put("ufimCHP_4", ufimCHP_4);
+        labelMap.put("umaguzGES", umaguzGES);
+        labelMap.put("uzanGES", uzanGES);
+        labelMap.put("zatonCHP", zatonCHP);
+        labelMap.put("zauralCHP", zauralCHP);
+        
+        initObjectsOnMap();
     }
     
+    private void initObjectsOnMap(){
+        short count = 0;
+        String PATH = "";
+        for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
+            if(entry.getKey().endsWith("_MAP")){
+                for(EnergyObject mapObject: energyObjects){
+                    if(mapObject.programmNameOnMap.equals(entry.getKey())){
+                        if(mapObject.type.equals("ges"))
+                            PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges.png";
+                        else if(mapObject.type.equals("gres"))
+                            PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres.png";
+                        else if(mapObject.type.equals("ves"))
+                            PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves.png";
+                        entry.getValue().setText("<html><body>"
+                            + "<table style='border-collapse: collapse;'>"
+                            + "<tr>"
+                            + "<td style='vertical-align: middle;'><img src='" + PATH + "' width='30' height='30' /></td>" // Указываем размеры изображения
+                            + "<td style='vertical-align: middle; padding-left: 0px;'>"
+                            + "<span style='font-size:8px; font-weight:bold;'>P:"+powerValue+" MWt</span><br/>" // Первая строка текста
+                            + "<span style='font-size:8px;'>f: "+frequencyValue+" Hz</span>" // Вторая строка текста
+                            + "</td>"
+                            + "</tr>"
+                            + "</table>"
+                            + "</body></html>");
+                    }
+                }
+            }
+        }        
+    }
     
+    private JPanel getInformationPanel(EnergyObject object){
+        JPanel panel = new javax.swing.JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel label = new JLabel(object.description);
+        panel.add(label);
+        JButton button1 = new JButton("Отключить");
+        
+        button1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Действие при нажатии кнопки "Отключить"
+            
+            }
+        });
+        
+        JButton button2 = new JButton("Подключить");
+        
+        button2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Действие при нажатии кнопки "Подключить"
+            
+            }
+        });
+        
+        panel.add(button1);
+        panel.add(button2);
+        return panel;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,8 +223,11 @@ public class MainForm extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setLayout(new java.awt.GridLayout(1, 2, 30, 0));
 
-        jPanel1.setLayout(new java.awt.BorderLayout(10, 15));
+        jPanel1.setLayout(new java.awt.BorderLayout(10, 10));
 
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(733, 930));
+
+        MAPJlabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         ImageIcon imageIcon = new ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Kursach\\app\\src\\main\\resources\\Bashkortostan.png");
         MAPJlabel.setIcon(imageIcon);
 
@@ -224,20 +295,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        slakGES_MAP.setText("jLabel5");
-        slakGES_MAP.setText(
-            "<html><body>"
-            + "<table style='border-collapse: collapse;'>"
-            + "<tr>"
-            + "<td style='vertical-align: middle;'><img src='" + gresPATH + "' width='40' height='40' /></td>" // Указываем размеры изображения
-            + "<td style='vertical-align: middle; padding-left: 0px;'>"
-            + "<span style='font-size:12px; font-weight:bold;'>"+powerValue+"</span><br/>" // Первая строка текста
-            + "<span style='font-size:12px;'>"+frequencyValue+"</span>" // Вторая строка текста
-            + "</td>"
-            + "</tr>"
-            + "</table>"
-            + "</body></html>"
-        );
         slakGES_MAP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 slakGES_MAPMouseClicked(evt);
@@ -315,26 +372,26 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jLayeredPane1.setLayer(MAPJlabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(avzyanGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(kagaGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(karlamanGRES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(mechetlinGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(newsterCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(pavlovGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(priufimCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(salavatCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(sibayGCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(slakGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(sterCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(tupkilWPP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(ufimCHP_1_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(ufimCHP_2_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(ufimCHP_3_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(ufimCHP_4_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(umaguzGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(uzanGES_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(zatonCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(zauralCHP_MAP, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(avzyanGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(kagaGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(karlamanGRES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(mechetlinGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(newsterCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(pavlovGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(priufimCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(salavatCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(sibayGCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(slakGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(sterCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(tupkilWPP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(ufimCHP_1_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(ufimCHP_2_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(ufimCHP_3_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(ufimCHP_4_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(umaguzGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(uzanGES_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(zatonCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.setLayer(zauralCHP_MAP, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -343,139 +400,129 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(ufimCHP_2_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(pavlovGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(tupkilWPP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                                .addGap(52, 52, 52)
-                                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(sterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                                        .addComponent(zatonCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(38, 38, 38)
-                                                        .addComponent(ufimCHP_4_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(87, 87, 87))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(avzyanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                        .addComponent(uzanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                                            .addGap(41, 41, 41)
-                                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(newsterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(priufimCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                                    .addComponent(salavatCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(umaguzGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                                            .addGap(157, 157, 157)
-                                            .addComponent(ufimCHP_1_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(81, 81, 81)
+                        .addComponent(tupkilWPP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(zatonCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(ufimCHP_1_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(karlamanGRES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(ufimCHP_3_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(slakGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(230, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(173, 173, 173)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(salavatCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(kagaGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(avzyanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(slakGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(umaguzGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(sibayGCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(ufimCHP_3_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(priufimCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(ufimCHP_2_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(ufimCHP_4_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(newsterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(sterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(uzanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(zauralCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(kagaGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32))
+                                .addGap(347, 347, 347)
+                                .addComponent(pavlovGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(zauralCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addComponent(sibayGCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(188, 188, 188))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(mechetlinGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(241, 241, 241))))
+                                .addGap(120, 120, 120)
+                                .addComponent(karlamanGRES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mechetlinGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(445, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(MAPJlabel)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap(33, Short.MAX_VALUE)
+                    .addComponent(MAPJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(82, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(karlamanGRES_MAP)
-                .addGap(15, 15, 15)
-                .addComponent(mechetlinGES_MAP)
-                .addGap(31, 31, 31)
-                .addComponent(pavlovGES_MAP)
-                .addGap(48, 48, 48)
-                .addComponent(priufimCHP_MAP)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(ufimCHP_3_MAP)
-                        .addGap(15, 15, 15)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(tupkilWPP_MAP))
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(zatonCHP_MAP)))
-                        .addGap(26, 26, 26)
-                        .addComponent(ufimCHP_2_MAP)
-                        .addGap(31, 31, 31)
-                        .addComponent(slakGES_MAP)
-                        .addGap(2, 2, 2)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(newsterCHP_MAP)
-                            .addComponent(sterCHP_MAP))
-                        .addGap(21, 21, 21))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(ufimCHP_1_MAP)
-                        .addGap(18, 18, 18)
-                        .addComponent(ufimCHP_4_MAP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(uzanGES_MAP)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(avzyanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(kagaGES_MAP)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(salavatCHP_MAP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sibayGCHP_MAP)
-                        .addGap(116, 116, 116))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(umaguzGES_MAP)
-                        .addGap(2, 2, 2)
-                        .addComponent(zauralCHP_MAP)
-                        .addGap(124, 124, 124))))
+                        .addGap(50, 50, 50)
+                        .addComponent(karlamanGRES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pavlovGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(mechetlinGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                        .addComponent(tupkilWPP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ufimCHP_2_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(ufimCHP_1_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(priufimCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ufimCHP_3_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(zatonCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addComponent(ufimCHP_4_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(slakGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(umaguzGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(zauralCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uzanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newsterCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(salavatCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(kagaGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(avzyanGES_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sibayGCHP_MAP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(338, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(MAPJlabel)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(MAPJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 227, Short.MAX_VALUE)))
         );
 
         jPanel1.add(jLayeredPane1, java.awt.BorderLayout.CENTER);
@@ -590,18 +637,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2.add(controllerPanel);
 
         informationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Информация"));
-
-        javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
-        informationPanel.setLayout(informationPanelLayout);
-        informationPanelLayout.setHorizontalGroup(
-            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
-        );
-        informationPanelLayout.setVerticalGroup(
-            informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
-        );
-
+        informationPanel.setLayout(new javax.swing.BoxLayout(informationPanel, javax.swing.BoxLayout.Y_AXIS));
         jPanel2.add(informationPanel);
 
         getContentPane().add(jPanel2);
@@ -610,119 +646,245 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avzyanGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avzyanGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_avzyanGES_MAPMouseClicked
 
     private void kagaGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kagaGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_kagaGES_MAPMouseClicked
 
     private void karlamanGRES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_karlamanGRES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_karlamanGRES_MAPMouseClicked
 
     private void mechetlinGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mechetlinGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_mechetlinGES_MAPMouseClicked
 
     private void newsterCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsterCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_newsterCHP_MAPMouseClicked
 
     private void pavlovGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pavlovGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_pavlovGES_MAPMouseClicked
 
     private void priufimCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priufimCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_priufimCHP_MAPMouseClicked
 
     private void salavatCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salavatCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_salavatCHP_MAPMouseClicked
 
     private void sibayGCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sibayGCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_sibayGCHP_MAPMouseClicked
 
     private void slakGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_slakGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_slakGES_MAPMouseClicked
 
     private void sterCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sterCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_sterCHP_MAPMouseClicked
 
     private void tupkilWPP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tupkilWPP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_tupkilWPP_MAPMouseClicked
 
     private void ufimCHP_1_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufimCHP_1_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_ufimCHP_1_MAPMouseClicked
 
     private void ufimCHP_2_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufimCHP_2_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_ufimCHP_2_MAPMouseClicked
 
     private void ufimCHP_3_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufimCHP_3_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_ufimCHP_3_MAPMouseClicked
 
     private void ufimCHP_4_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufimCHP_4_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_ufimCHP_4_MAPMouseClicked
 
     private void umaguzGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_umaguzGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_umaguzGES_MAPMouseClicked
 
     private void uzanGES_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uzanGES_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_uzanGES_MAPMouseClicked
 
     private void zatonCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zatonCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_zatonCHP_MAPMouseClicked
 
     private void zauralCHP_MAPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zauralCHP_MAPMouseClicked
-        // TODO add your handling code here:
+        for(EnergyObject object: energyObjects){
+            if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
+                this.informationPanel.removeAll();
+                this.informationPanel.add(getInformationPanel(object));
+                revalidate();
+                repaint();
+                break;
+            }
+        }
     }//GEN-LAST:event_zauralCHP_MAPMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainForm().setVisible(true);
-            }
-        });
-    }
     
     
 

@@ -21,7 +21,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-88,0,0,5,-64"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,4,0,0,0,7,-22"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -34,10 +34,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout">
         <Property name="horizontalGap" type="int" value="10"/>
-        <Property name="verticalGap" type="int" value="15"/>
+        <Property name="verticalGap" type="int" value="10"/>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JLayeredPane" name="jLayeredPane1">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[733, 930]"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
@@ -50,103 +55,85 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="tupkilWPP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="zatonCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="ufimCHP_1_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="ufimCHP_2_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="pavlovGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="salavatCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="kagaGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="avzyanGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tupkilWPP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="sterCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="zatonCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                                              <Component id="ufimCHP_4_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="avzyanGES_MAP" min="-2" pref="35" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Component id="uzanGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="newsterCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                      <Component id="priufimCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="salavatCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="umaguzGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                                                  <Component id="ufimCHP_1_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                      <Component id="slakGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="umaguzGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="sibayGCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
+                              <Component id="ufimCHP_3_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="priufimCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                              <Component id="ufimCHP_2_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="ufimCHP_4_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                              <Component id="newsterCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="sterCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="uzanGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
+                              <Component id="zauralCHP_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="karlamanGRES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
-                              <Component id="ufimCHP_3_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-                              <Component id="slakGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="230" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="kagaGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="347" max="-2" attributes="0"/>
+                                      <Component id="pavlovGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="zauralCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="karlamanGRES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="sibayGCHP_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="mechetlinGES_MAP" min="-2" pref="37" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="mechetlinGES_MAP" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="445" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="MAPJlabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                          <Component id="MAPJlabel" min="-2" pref="883" max="-2" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -154,78 +141,82 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="karlamanGRES_MAP" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="mechetlinGES_MAP" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="pavlovGES_MAP" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="priufimCHP_MAP" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="ufimCHP_3_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                      <Component id="tupkilWPP_MAP" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="zatonCHP_MAP" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="ufimCHP_2_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="slakGES_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="newsterCHP_MAP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sterCHP_MAP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="karlamanGRES_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="pavlovGES_MAP" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                              <Component id="ufimCHP_1_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ufimCHP_4_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="uzanGES_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="avzyanGES_MAP" min="-2" pref="15" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="mechetlinGES_MAP" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="kagaGES_MAP" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Component id="salavatCHP_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="sibayGCHP_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace pref="183" max="32767" attributes="0"/>
+                              <Component id="tupkilWPP_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ufimCHP_2_MAP" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                              <Component id="umaguzGES_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="zauralCHP_MAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                                      <Component id="ufimCHP_1_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="priufimCHP_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="ufimCHP_3_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                                      <Component id="zatonCHP_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="ufimCHP_4_MAP" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="slakGES_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                              <Component id="umaguzGES_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="zauralCHP_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sterCHP_MAP" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="uzanGES_MAP" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="newsterCHP_MAP" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="salavatCHP_MAP" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="kagaGES_MAP" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="avzyanGES_MAP" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sibayGCHP_MAP" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="338" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="MAPJlabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="MAPJlabel" min="-2" pref="751" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="227" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -233,6 +224,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="MAPJlabel">
+              <Properties>
+                <Property name="verticalTextPosition" type="int" value="1"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ImageIcon imageIcon = new ImageIcon(&quot;C:\\Users\\Admin\\Documents\\NetBeansProjects\\Kursach\\app\\src\\main\\resources\\Bashkortostan.png&quot;);&#xd;&#xa;MAPJlabel.setIcon(imageIcon);"/>
               </AuxValues>
@@ -247,6 +241,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="avzyanGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="kagaGES_MAP">
               <Properties>
@@ -255,6 +252,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kagaGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="karlamanGRES_MAP">
               <Properties>
@@ -263,6 +263,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="karlamanGRES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="mechetlinGES_MAP">
               <Properties>
@@ -271,6 +274,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mechetlinGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="newsterCHP_MAP">
               <Properties>
@@ -279,6 +285,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newsterCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="pavlovGES_MAP">
               <Properties>
@@ -287,6 +296,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pavlovGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="priufimCHP_MAP">
               <Properties>
@@ -295,6 +307,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="priufimCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="salavatCHP_MAP">
               <Properties>
@@ -303,6 +318,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="salavatCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="sibayGCHP_MAP">
               <Properties>
@@ -311,16 +329,16 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sibayGCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="slakGES_MAP">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel5"/>
-              </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="slakGES_MAPMouseClicked"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="slakGES_MAP.setText(&#xd;&#xa;&#x9;&quot;&lt;html&gt;&lt;body&gt;&quot;&#xd;&#xa;        + &quot;&lt;table style=&apos;border-collapse: collapse;&apos;&gt;&quot;&#xd;&#xa;        + &quot;&lt;tr&gt;&quot;&#xd;&#xa;        + &quot;&lt;td style=&apos;vertical-align: middle;&apos;&gt;&lt;img src=&apos;&quot; + gresPATH + &quot;&apos; width=&apos;40&apos; height=&apos;40&apos; /&gt;&lt;/td&gt;&quot; // &#x423;&#x43a;&#x430;&#x437;&#x44b;&#x432;&#x430;&#x435;&#x43c; &#x440;&#x430;&#x437;&#x43c;&#x435;&#x440;&#x44b; &#x438;&#x437;&#x43e;&#x431;&#x440;&#x430;&#x436;&#x435;&#x43d;&#x438;&#x44f;&#xd;&#xa;        + &quot;&lt;td style=&apos;vertical-align: middle; padding-left: 0px;&apos;&gt;&quot;&#xd;&#xa;        + &quot;&lt;span style=&apos;font-size:12px; font-weight:bold;&apos;&gt;&quot;+powerValue+&quot;&lt;/span&gt;&lt;br/&gt;&quot; // &#x41f;&#x435;&#x440;&#x432;&#x430;&#x44f; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x430; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430;&#xd;&#xa;        + &quot;&lt;span style=&apos;font-size:12px;&apos;&gt;&quot;+frequencyValue+&quot;&lt;/span&gt;&quot; // &#x412;&#x442;&#x43e;&#x440;&#x430;&#x44f; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x430; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430;&#xd;&#xa;        + &quot;&lt;/td&gt;&quot;&#xd;&#xa;        + &quot;&lt;/tr&gt;&quot;&#xd;&#xa;        + &quot;&lt;/table&gt;&quot;&#xd;&#xa;        + &quot;&lt;/body&gt;&lt;/html&gt;&quot;&#xd;&#xa;);"/>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="sterCHP_MAP">
@@ -330,6 +348,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sterCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="tupkilWPP_MAP">
               <Properties>
@@ -338,6 +359,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tupkilWPP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="ufimCHP_1_MAP">
               <Properties>
@@ -346,6 +370,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ufimCHP_1_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="ufimCHP_2_MAP">
               <Properties>
@@ -354,6 +381,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ufimCHP_2_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="ufimCHP_3_MAP">
               <Properties>
@@ -362,6 +392,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ufimCHP_3_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="ufimCHP_4_MAP">
               <Properties>
@@ -370,6 +403,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ufimCHP_4_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="umaguzGES_MAP">
               <Properties>
@@ -378,6 +414,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="umaguzGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="uzanGES_MAP">
               <Properties>
@@ -386,6 +425,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="uzanGES_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="zatonCHP_MAP">
               <Properties>
@@ -394,6 +436,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zatonCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="zauralCHP_MAP">
               <Properties>
@@ -402,6 +447,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="zauralCHP_MAPMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -695,17 +743,8 @@
             </Property>
           </Properties>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="711" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="307" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+            <Property name="axis" type="int" value="1"/>
           </Layout>
         </Container>
       </SubComponents>
