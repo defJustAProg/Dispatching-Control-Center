@@ -3,11 +3,19 @@
  */
 package com.example.Kursach;
 
+import static com.example.Kursach.MainForm.labelMap;
 import java.awt.Color;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JLabel;
 
 public class App {
     
     public static EnergyObject[] energyObjects;
+    public static ObjectThread[] threads;
     public static MainForm UI;
     public static double resultingPower;
     public static double consumersPower ;
@@ -15,6 +23,20 @@ public class App {
     private static synchronized void setPowerByObJectThread(double value){
         resultingPower += value;
     }
+    
+    public  synchronized void checkEnergyObjects(String programmName){
+        for(EnergyObject object: energyObjects){
+            if(object.programmName == programmName){
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+
 
     
     public static class EnergyObject{
@@ -24,8 +46,9 @@ public class App {
         public String description;
         private String programmName;
         public String programmNameOnMap;
-        public short frequency;
+        public int frequency;
         public String type;
+        public boolean on = true;
         
         EnergyObject(String name, double power, String programmName, String programmNameOnMap, String type){
             
@@ -38,10 +61,10 @@ public class App {
             this.type = type;
         }
         
-        public void changeFrequency(short value){
+        public synchronized void changeFrequency(int value){
             this.frequency = value;
             UI.labelMap.get(this.programmName).setForeground(Color.RED);
-            UI.labelMap.get(this.programmNameOnMap).setText("");
+//            UI.labelMap.get(this.programmNameOnMap).setText("");
         }
         
     }
@@ -53,28 +76,132 @@ public class App {
         }
         
         public void run(){
+            int indexOfInterraptedObject;
             while(true){
-                
+                try {
+                    Thread.sleep(new Random().nextInt(35000 - 20000 + 1000) + 20000);
+                    
+                    for(int countOfBrokenObjects = 0; countOfBrokenObjects <= new Random().nextInt(3 - 1 + 1) + 1; countOfBrokenObjects++){
+                        if((new Random().nextInt(10 - 1 + 1) + 1) % 2 == 0){
+                            indexOfInterraptedObject = new Random().nextInt(19 - 1 + 1) + 1;
+                            threads[indexOfInterraptedObject].object.changeFrequency(55);
+                            threads[indexOfInterraptedObject].setEnergyObjects(false);
+                        }
+                        else{
+                            indexOfInterraptedObject = new Random().nextInt(19 - 1 + 1) + 1;
+//                            threads[indexOfInterraptedObject].object.changeFrequency(55);
+                            threads[indexOfInterraptedObject].setEnergyObjects(false);
+                        }
+                    }
+                    
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
     
     public static class ObjectThread extends Thread{
-        EnergyObject object;
+        public EnergyObject object;
+        public boolean on = true;
+        
         public ObjectThread(EnergyObject object){
             super(object.name);
             setPowerByObJectThread(object.power);
             this.object = object;
         }
         
+        public synchronized void checkEnergyObjects(){
+            if(!object.on){
+                System.out.println("object.on = false");
+                String PATH = "";
+                for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
+                    if(entry.getKey().endsWith("_MAP")){
+                        if(object.programmNameOnMap.equals(entry.getKey())){
+                            if(object.type.equals("ges"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges-orange.png";
+                            else if(object.type.equals("gres"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres-orange.png";
+                            else if(object.type.equals("ves"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves-orange.png";
+                            entry.getValue().setText("<html><body>"
+                                + "<table style='border-collapse: collapse;'>"
+                                + "<tr>"
+                                + "<td style='vertical-align: middle;'><img src='" + PATH + "' width='30' height='30' /></td>" // Указываем размеры изображения
+                                + "<td style='vertical-align: middle; padding-left: 0px;'>"
+                                + "<span style='font-size:8px; font-weight:bold;'>P:"+object.power+" MWt</span><br/>" // Первая строка текста
+                                + "<span style='font-size:8px;'>f: "+object.frequency+" Hz</span>" // Вторая строка текста
+                                + "</td>"
+                                + "</tr>"
+                                + "</table>"
+                                + "</body></html>");
+                        } 
+                    }
+                }
+                
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        public synchronized void setEnergyObjects(boolean value){
+            object.on = value;
+        }
+        
+        public synchronized void contitueThread(String name){
+            if(object.programmNameOnMap.equals(name) & object.on == false){
+                if(object.frequency != 50){
+                    UI.labelMap.get(object.programmName).setForeground(Color.BLACK);
+                    object.frequency = 50;
+                }
+                object.on = true;
+                String PATH = "";
+                for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
+                    if(entry.getKey().endsWith("_MAP")){
+                        if(object.programmNameOnMap.equals(entry.getKey())){
+                            if(object.type.equals("ges"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges.png";
+                            else if(object.type.equals("gres"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres.png";
+                            else if(object.type.equals("ves"))
+                                PATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves.png";
+                            entry.getValue().setText("<html><body>"
+                                + "<table style='border-collapse: collapse;'>"
+                                + "<tr>"
+                                + "<td style='vertical-align: middle;'><img src='" + PATH + "' width='30' height='30' /></td>" // Указываем размеры изображения
+                                + "<td style='vertical-align: middle; padding-left: 0px;'>"
+                                + "<span style='font-size:8px; font-weight:bold;'>P:"+object.power+" MWt</span><br/>" // Первая строка текста
+                                + "<span style='font-size:8px;'>f: "+object.frequency+" Hz</span>" // Вторая строка текста
+                                + "</td>"
+                                + "</tr>"
+                                + "</table>"
+                                + "</body></html>");
+                        } 
+                    }
+                }
+                notify();
+            }
+        }
+        
         public void run(){
-            
+            while(true){
+                checkEnergyObjects();
+                try {
+                    sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         
     }
     
     private static void createEnergyObjects(){
         energyObjects = new EnergyObject[20];
+        threads = new ObjectThread[20];
         energyObjects[0] = new EnergyObject("Карламановская ГРЭС",1856.2,"karlamanGRES","karlamanGRES_MAP","gres");
         energyObjects[1] = new EnergyObject("Мечетлинская малая ГЭС",0.445,"mechetlinGES","mechetlinGES_MAP","ges");
         energyObjects[2] = new EnergyObject("Павловская ГЭС",166.4,"pavlovGES","pavlovGES_MAP","ges");
@@ -102,7 +229,14 @@ public class App {
         UI = new MainForm(energyObjects);
         UI.setVisible(true);
         resultingPower = 0;
-        //создание потоков
-        //consumersPower = resultingPower;
+        for(int i=0; i <= 19; i++){
+            threads[i] = new ObjectThread(energyObjects[i]);
+            threads[i].start();
+        }
+        
+        Processor processor = new Processor("Процессор");
+        processor.start();
+        consumersPower = resultingPower - 0.075;
+        resultingPower -= 0.075;
     }
 }

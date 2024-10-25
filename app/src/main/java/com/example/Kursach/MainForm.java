@@ -4,7 +4,9 @@
  */
 package com.example.Kursach;
 import com.example.Kursach.App.EnergyObject;
+import com.example.Kursach.App.ObjectThread;
 import static com.example.Kursach.App.energyObjects;
+import static com.example.Kursach.App.threads;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -93,7 +95,7 @@ public class MainForm extends javax.swing.JFrame {
     }
     
     private void initObjectsOnMap(){
-        short count = 0;
+//        short count = 0;
         String PATH = "";
         for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
             if(entry.getKey().endsWith("_MAP")){
@@ -133,7 +135,11 @@ public class MainForm extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Действие при нажатии кнопки "Отключить"
-            
+//            for(App.ObjectThread thread: threads){
+//                if(thread.object.name.equals(object.name)){
+//                    thread.on = false;
+//                }
+//            }
             }
         });
         
@@ -143,8 +149,12 @@ public class MainForm extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Действие при нажатии кнопки "Подключить"
-            
+            for(ObjectThread thread: threads){
+                if(thread.object.programmNameOnMap.equals(object.programmNameOnMap)){
+                    thread.contitueThread(object.programmNameOnMap);
+                }
             }
+        }
         });
         
         panel.add(button1);
@@ -649,6 +659,7 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
+                this.informationPanel.add(new JLabel("Резерв"));
                 this.informationPanel.add(getInformationPanel(object));
                 revalidate();
                 repaint();
