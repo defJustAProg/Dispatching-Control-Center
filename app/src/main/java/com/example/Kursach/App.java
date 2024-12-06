@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JLabel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class App {
     
@@ -19,9 +23,21 @@ public class App {
     public static MainForm UI;
     public static double resultingPower;
     public static double consumersPower ;
+    public static ChartPanel chartPanel;
+    private static PlotThread plotThread;
+    
+    public static synchronized ChartPanel getPlotPanel(){
+        chartPanel = new ChartPanel(plotThread.chart);
+        return chartPanel;
+    }
+    
+    private static synchronized double getResultingPower(){
+        return resultingPower;
+    }
     
     private static synchronized void setPowerByObJectThread(double value){
         resultingPower += value;
+        UI.jLabel2.setText("Производимая мощность МВт: "+resultingPower);
     }
     
     public  synchronized void checkEnergyObjects(String programmName){
@@ -84,13 +100,17 @@ public class App {
                     for(int countOfBrokenObjects = 0; countOfBrokenObjects <= new Random().nextInt(3 - 1 + 1) + 1; countOfBrokenObjects++){
                         if((new Random().nextInt(10 - 1 + 1) + 1) % 2 == 0){
                             indexOfInterraptedObject = new Random().nextInt(19 - 1 + 1) + 1;
-                            threads[indexOfInterraptedObject].object.changeFrequency(55);
-                            threads[indexOfInterraptedObject].setEnergyObjects(false);
+                            if(threads[indexOfInterraptedObject].object.on){
+                                threads[indexOfInterraptedObject].object.changeFrequency(55);
+                                threads[indexOfInterraptedObject].setEnergyObjects(false);
+                            }
                         }
                         else{
                             indexOfInterraptedObject = new Random().nextInt(19 - 1 + 1) + 1;
-//                            threads[indexOfInterraptedObject].object.changeFrequency(55);
-                            threads[indexOfInterraptedObject].setEnergyObjects(false);
+                            if(threads[indexOfInterraptedObject].object.on){
+                                indexOfInterraptedObject = new Random().nextInt(19 - 1 + 1) + 1;
+                                threads[indexOfInterraptedObject].setEnergyObjects(false);
+                            }
                         }
                     }
                     
@@ -113,7 +133,8 @@ public class App {
         
         public synchronized void checkEnergyObjects(){
             if(!object.on){
-                System.out.println("object.on = false");
+                if(object.frequency == 50)
+                    setPowerByObJectThread(-object.power);
                 String PATH = "";
                 for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
                     if(entry.getKey().endsWith("_MAP")){
@@ -129,7 +150,7 @@ public class App {
                                 + "<tr>"
                                 + "<td style='vertical-align: middle;'><img src='" + PATH + "' width='30' height='30' /></td>" // Указываем размеры изображения
                                 + "<td style='vertical-align: middle; padding-left: 0px;'>"
-                                + "<span style='font-size:8px; font-weight:bold;'>P:"+object.power+" MWt</span><br/>" // Первая строка текста
+                                + "<span style='font-size:8px; font-weight:bold;'>P:"+(object.frequency == 50 ? 0:object.power)+" MWt</span><br/>" // Первая строка текста
                                 + "<span style='font-size:8px;'>f: "+object.frequency+" Hz</span>" // Вторая строка текста
                                 + "</td>"
                                 + "</tr>"
@@ -157,6 +178,8 @@ public class App {
                     UI.labelMap.get(object.programmName).setForeground(Color.BLACK);
                     object.frequency = 50;
                 }
+                else
+                    setPowerByObJectThread(object.power);
                 object.on = true;
                 String PATH = "";
                 for(Map.Entry<String, JLabel> entry : labelMap.entrySet()){
@@ -199,6 +222,38 @@ public class App {
         
     }
     
+    public static class PlotThread extends Thread{
+        private DefaultCategoryDataset dataset;
+        private int timeAfterBoot = 0;
+        JFreeChart chart;
+        public PlotThread(){
+            super("PlotThread");
+            dataset = new DefaultCategoryDataset();
+           
+//            chartPanel = new ChartPanel(chart);
+        }
+        
+        public void run(){
+            while(true){
+                timeAfterBoot++;
+                
+                dataset.addValue(getResultingPower(), "Результирующая мощность", String.valueOf(timeAfterBoot));
+                this.chart = ChartFactory.createLineChart(
+                    "Производство электроэнергии МВт",
+                    "Время",
+                    "Мощность",
+                    dataset
+                );
+                try {
+                    sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    }
+    
     private static void createEnergyObjects(){
         energyObjects = new EnergyObject[20];
         threads = new ObjectThread[20];
@@ -231,12 +286,14 @@ public class App {
         resultingPower = 0;
         for(int i=0; i <= 19; i++){
             threads[i] = new ObjectThread(energyObjects[i]);
+            setPowerByObJectThread(threads[i].object.power);
             threads[i].start();
         }
-        
         Processor processor = new Processor("Процессор");
         processor.start();
-        consumersPower = resultingPower - 0.075;
-        resultingPower -= 0.075;
+        consumersPower = 8830.878;
+        UI.jLabel3.setText("Потребляемая мощность МВт: "+consumersPower);
+        plotThread = new PlotThread();
+        plotThread.start();
     }
 }

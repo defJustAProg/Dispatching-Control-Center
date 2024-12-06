@@ -22,8 +22,6 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
-    public short powerValue;
-    public short frequencyValue;
     public String gresPATH;
     public String gesPATH;
     public String vesPATH;
@@ -34,13 +32,7 @@ public class MainForm extends javax.swing.JFrame {
     public static Map<String, JLabel> labelMap = new HashMap<>();
     
     public MainForm(App.EnergyObject[] energyObjects) {
-        
-        
-        
-        
-        
-        powerValue = 0;
-        frequencyValue = 0;
+        super("Лязгин Роман");
         gresPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/gres.png";
         gesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ges.png";
         vesPATH = "file:///C:/Users/Admin/Documents/NetBeansProjects/Kursach/app/src/main/resources/ves.png";
@@ -112,8 +104,8 @@ public class MainForm extends javax.swing.JFrame {
                             + "<tr>"
                             + "<td style='vertical-align: middle;'><img src='" + PATH + "' width='30' height='30' /></td>" // Указываем размеры изображения
                             + "<td style='vertical-align: middle; padding-left: 0px;'>"
-                            + "<span style='font-size:8px; font-weight:bold;'>P:"+powerValue+" MWt</span><br/>" // Первая строка текста
-                            + "<span style='font-size:8px;'>f: "+frequencyValue+" Hz</span>" // Вторая строка текста
+                            + "<span style='font-size:8px; font-weight:bold;'>P:"+mapObject.power+" MWt</span><br/>" // Первая строка текста
+                            + "<span style='font-size:8px;'>f: "+mapObject.frequency+" Hz</span>" // Вторая строка текста
                             + "</td>"
                             + "</tr>"
                             + "</table>"
@@ -124,7 +116,7 @@ public class MainForm extends javax.swing.JFrame {
         }        
     }
     
-    private JPanel getInformationPanel(EnergyObject object){
+    private JPanel getInformationPanel(EnergyObject object, String nameOfLabel){
         JPanel panel = new javax.swing.JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JLabel label = new JLabel(object.description);
@@ -151,6 +143,7 @@ public class MainForm extends javax.swing.JFrame {
             // Действие при нажатии кнопки "Подключить"
             for(ObjectThread thread: threads){
                 if(thread.object.programmNameOnMap.equals(object.programmNameOnMap)){
+                    labelMap.get(nameOfLabel).setForeground(Color.BLACK);
                     thread.contitueThread(object.programmNameOnMap);
                 }
             }
@@ -551,10 +544,10 @@ public class MainForm extends javax.swing.JFrame {
 
         prosessControlPanel.setLayout(new java.awt.GridLayout(6, 1, 0, 10));
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         prosessControlPanel.add(jLabel2);
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         prosessControlPanel.add(jLabel3);
 
         jButton1.setText("Резерв");
@@ -567,6 +560,11 @@ public class MainForm extends javax.swing.JFrame {
         prosessControlPanel.add(jButton3);
 
         jButton4.setText("График");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         prosessControlPanel.add(jButton4);
 
         controllerPanel.add(prosessControlPanel);
@@ -660,7 +658,8 @@ public class MainForm extends javax.swing.JFrame {
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
                 this.informationPanel.add(new JLabel("Резерв"));
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -672,7 +671,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -684,7 +685,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -696,7 +699,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -708,7 +713,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -720,7 +727,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -732,7 +741,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -744,7 +755,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -756,7 +769,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -768,7 +783,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -780,7 +797,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -792,7 +811,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -804,7 +825,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -816,7 +839,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -828,7 +853,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -840,7 +867,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -852,7 +881,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -864,7 +895,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -876,7 +909,9 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
@@ -888,13 +923,20 @@ public class MainForm extends javax.swing.JFrame {
         for(EnergyObject object: energyObjects){
             if(object.programmNameOnMap.equals(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1"))){
                 this.informationPanel.removeAll();
-                this.informationPanel.add(getInformationPanel(object));
+                this.informationPanel.add(new JLabel("Резерв"));
+                this.informationPanel.add(getInformationPanel(object, Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")));
+                labelMap.get(Thread.currentThread().getStackTrace()[1].getMethodName().replaceAll("(.*?MAP).*", "$1")).setForeground(Color.GREEN);
                 revalidate();
                 repaint();
                 break;
             }
         }
     }//GEN-LAST:event_zauralCHP_MAPMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        this.informationPanel.removeAll();
+        this.informationPanel.add(App.getPlotPanel());
+    }//GEN-LAST:event_jButton4MouseClicked
 
     
     
@@ -912,8 +954,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
